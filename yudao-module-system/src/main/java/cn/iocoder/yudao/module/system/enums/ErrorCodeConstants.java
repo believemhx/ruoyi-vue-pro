@@ -168,4 +168,13 @@ public interface ErrorCodeConstants {
     // ========== 站内信发送 1-002-028-000 ==========
     ErrorCode NOTIFY_SEND_TEMPLATE_PARAM_MISS = new ErrorCode(1_002_028_000, "模板参数({})缺失");
 
+    // ========== 二次验证 1-002-031-000 ==========
+    ErrorCode SECONDARY_VERIFICATION_TYPE_NOT_SUPPORT = new ErrorCode(1_002_031_000, "不支持的验证类型");
+    ErrorCode SECONDARY_VERIFICATION_PASSWORD_REQUIRED = new ErrorCode(1_002_031_001, "密码验证时，密码不能为空");
+    ErrorCode SECONDARY_VERIFICATION_PASSWORD_ERROR = new ErrorCode(1_002_031_002, "密码验证失败");
+    ErrorCode SECONDARY_VERIFICATION_SMS_CODE_REQUIRED = new ErrorCode(1_002_031_003, "短信验证时，手机号和验证码不能为空");
+    ErrorCode SECONDARY_VERIFICATION_USER_NOT_EXISTS = new ErrorCode(1_002_031_004, "用户不存在");
+    ErrorCode SECONDARY_VERIFICATION_TOKEN_INVALID = new ErrorCode(1_002_031_005, "验证令牌无效或已过期");
+    ErrorCode SECONDARY_VERIFICATION_FAILED = new ErrorCode(1_002_031_006, "二次验证失败");
+
 }

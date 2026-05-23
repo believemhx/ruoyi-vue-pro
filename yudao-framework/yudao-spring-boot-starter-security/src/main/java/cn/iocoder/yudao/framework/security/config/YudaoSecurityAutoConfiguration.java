@@ -2,7 +2,9 @@ package cn.iocoder.yudao.framework.security.config;
 
 import cn.iocoder.yudao.framework.common.biz.system.oauth2.OAuth2TokenCommonApi;
 import cn.iocoder.yudao.framework.common.biz.system.permission.PermissionCommonApi;
+import cn.iocoder.yudao.framework.common.biz.system.verification.SecondaryVerificationCommonApi;
 import cn.iocoder.yudao.framework.security.core.context.TransmittableThreadLocalSecurityContextHolderStrategy;
+import cn.iocoder.yudao.framework.security.core.aop.SecondaryVerificationAspect;
 import cn.iocoder.yudao.framework.security.core.filter.TokenAuthenticationFilter;
 import cn.iocoder.yudao.framework.security.core.handler.AccessDeniedHandlerImpl;
 import cn.iocoder.yudao.framework.security.core.handler.AuthenticationEntryPointImpl;
@@ -13,6 +15,7 @@ import jakarta.annotation.Resource;
 import org.springframework.beans.factory.config.MethodInvokingFactoryBean;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -89,6 +92,15 @@ public class YudaoSecurityAutoConfiguration {
         methodInvokingFactoryBean.setTargetMethod("setStrategyName");
         methodInvokingFactoryBean.setArguments(TransmittableThreadLocalSecurityContextHolderStrategy.class.getName());
         return methodInvokingFactoryBean;
+    }
+
+    /**
+     * 二次验证 AOP 切面。
+     */
+    @Bean
+    @ConditionalOnBean(SecondaryVerificationCommonApi.class)
+    public SecondaryVerificationAspect secondaryVerificationAspect() {
+        return new SecondaryVerificationAspect();
     }
 
 }

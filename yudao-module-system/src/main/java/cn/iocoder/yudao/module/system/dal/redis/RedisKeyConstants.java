@@ -107,4 +107,9 @@ public interface RedisKeyConstants {
      */
     String WXA_SUBSCRIBE_TEMPLATE = "wxa_subscribe_template";
 
+    /**
+     * 二次验证令牌缓存。
+     */
+    String SECONDARY_VERIFICATION_TOKEN = "secondary_verification:token:%s:%s:%s";
+
 }
